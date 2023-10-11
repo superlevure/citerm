@@ -1,0 +1,122 @@
+[project]
+name = "citerm"
+version = "0.0.5"
+authors = [
+    { name="superlevure", email="superlevure.dev@gmail.com" },
+]
+description = "A tool to watch CI logs in the terminal"
+readme = "README.md"
+requires-python = ">=3.10"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+]
+dependencies = [
+    "textual~=0.39",
+    "python-gitlab~=3.15",
+]
+
+[tool.setuptools.packages.find]
+where = ["citerm"]
+
+[tool.setuptools.package-data]
+citerm = ["citerm.tcss"]
+
+[project.optional-dependencies]
+dev = [
+    "textual-dev==1.2.1",
+]
+
+[project.urls]
+"Homepage" = "https://github.com/superlevure/citerm"
+"Bug Tracker" = "https://github.com/superlevure/citerm/issues"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.black]
+line-length = 90
+
+[tool.mypy]
+exclude = [
+    "build",
+    ".eggs",
+]
+namespace_packages = true
+ignore_missing_imports = true
+explicit_package_bases = true
+check_untyped_defs = true
+
+
+[tool.pylint]
+ignore = [
+    "build",
+    ".eggs",
+    "migrations"
+]
+load-plugins = [
+    "pylint.extensions.typing",
+]
+
+[tool.pylint.'MESSAGES CONTROL']
+disable = [
+    # Error:
+    "not-an-iterable",
+    "no-member",
+    "not-callable",
+    "no-value-for-parameter",
+    "not-context-manager",
+    "unsubscriptable-object",
+    "no-name-in-module",
+    "c-extension-no-member",
+    "unspecified-encoding",
+    "import-error",
+    "unsupported-assignment-operation",
+
+    # Warning:
+    "broad-except",
+    "fixme",
+    "global-statement",
+    "global-variable-not-assigned",
+    "invalid-envvar-default",
+    "invalid-overridden-method",
+    "logging-fstring-interpolation",
+    "pointless-statement",
+    "protected-access",
+    "redefined-builtin",
+    "redefined-outer-name",
+    "unused-wildcard-import",
+    "wildcard-import",
+    "unused-import",
+    "exec-used",
+
+    # Convention:
+    "line-too-long",
+    "invalid-name",
+    "import-outside-toplevel",
+    "missing-module-docstring",
+    "missing-class-docstring",
+    "missing-function-docstring",
+    "unused-argument",
+
+    # Refactor:
+    "consider-using-with",
+    "too-few-public-methods",
+    "too-many-arguments",
+    "too-many-ancestors",
+    "too-many-branches",
+    "too-many-instance-attributes",
+    "too-many-nested-blocks",
+    "too-many-return-statements",
+    "too-many-locals",
+    "too-many-public-methods",
+    "too-many-lines",
+    "too-many-statements",
+    "cyclic-import",
+    "duplicate-code",
+
+    "deprecated-typing-alias",
+    "consider-alternative-union-syntax",
+]

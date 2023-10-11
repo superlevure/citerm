@@ -1,0 +1,7 @@
+.log {
+    border: solid white 50%;
+    overflow-x: hidden;
+    scrollbar-size-vertical: 0;
+    border-title-align: center;
+}
+

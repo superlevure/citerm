@@ -1,0 +1,24 @@
+{
+    // Checking
+    "flake8.args": [
+        "--config=${workspaceFolder}/.flake8"
+    ],
+    "pylint.args": [
+        "--rcfile=${workspaceFolder}/pyproject.toml"
+    ],
+    "mypy-type-checker.args": [
+        "--config-file=${workspaceFolder}/pyproject.toml"
+    ],
+    "[python]": {
+        "editor.defaultFormatter": "ms-python.black-formatter"
+    },
+    "black-formatter.args": [
+        "--config=${workspaceFolder}/pyproject.toml"
+    ],
+    // Testing
+    "python.testing.cwd": "${workspaceFolder}/citerm",
+    "python.testing.unittestEnabled": false,
+    "python.testing.pytestEnabled": true,
+    "editor.formatOnSave": true,
+    "python.analysis.typeCheckingMode": "off"
+}
