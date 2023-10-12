@@ -16,8 +16,15 @@ from gitlab import GitlabGetError
 
 
 class CustomRichLog(RichLog):
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.keep = False
+
     def key_w(self) -> None:
         self.remove()
+
+    def key_k(self) -> None:
+        self.keep = not self.keep
 
     def on_focus(self) -> None:
         self.styles.border_title_style = "bold"
@@ -68,9 +75,10 @@ class CitermApp(App):
             if job.status == "success":
                 log.styles.border = ("solid", "green")
                 self.log(f"Job {job.id} success")
-                sleep(5)
-                self.call_from_thread(log.remove)
-                self.job_count -= 1
+                if not log.keep:
+                    sleep(5)
+                    self.call_from_thread(log.remove)
+                    self.job_count -= 1
                 return
 
             elif job.status == "failed":
@@ -180,7 +188,11 @@ class CitermApp(App):
         return result.stdout.decode("utf-8").strip()
 
 
-if __name__ == "__main__":
+def main():
     app = CitermApp(css_path="citerm.tcss")
     if exit_message := app.run():
         print(exit_message)
+
+
+if __name__ == "__main__":
+    main()
